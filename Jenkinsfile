@@ -1,7 +1,7 @@
 // Jenkinsfile (Declarative Pipeline)
 
 pipeline {
-    agent none
+    
     stages {
         stage('CHECKOUT') {
             
