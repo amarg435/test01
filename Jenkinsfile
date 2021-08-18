@@ -39,6 +39,7 @@ pipeline {
                         
                         
                     fi
+                ...
             }
         }
         stage('Deploy') 
