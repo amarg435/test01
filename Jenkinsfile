@@ -7,7 +7,6 @@ pipeline {
         stage('CHECKOUT') {
             
             steps {
-               
                 sh 'echo Github CHECKOUT successfully'
                 
             }
