@@ -4,9 +4,7 @@ pipeline {
     agent none
     stages {
         stage('CHECKOUT') {
-            agent {
-              label "linux"
-            }
+            
             steps {
                
                 sh 'echo Github CHECKOUT successfully'
