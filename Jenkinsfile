@@ -16,8 +16,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 env.GIT_REPO_NAME = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]    
-                withCredentials([usernamePassword(credentialsId: 'devopsgithubtoken', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                #input(message: "Deploy to production?")
+                withCredentials([usernamePassword(credentialsId: 'devopsgithubtoken', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
                 sh '''
                     echo "Checking for Json file with attrinute 'Status' active and replacing with paused value"
                     echo "Current Path:"
