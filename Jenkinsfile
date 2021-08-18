@@ -8,6 +8,8 @@ pipeline {
             
             steps {
                 sh 'echo Github CHECKOUT successfully'
+		  }
+	}	
         
         stage("Run Tests") {
             steps {
@@ -37,7 +39,7 @@ pipeline {
             }
         }
         
-		stage('Deploy'){
+	stage('Deploy'){
             steps {
                 sh 'echo Deploying: Moving to Deploy target folder locatin'          
             
