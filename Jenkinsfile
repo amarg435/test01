@@ -14,13 +14,12 @@ pipeline {
         stage("Run Tests") {
             steps {
                     sh '''
-                    echo "Checking for Json file with attrinute 'Status' active and replacing with paused value"
-                    echo "Current Path:"
-                    pwd
-                
                     echo "Demo testing successfull..."  
                     echo "Checking for Json file with attrinute 'Status' active and replacing with paused value"
-
+		    def initialize_repo():
+    			os.system("git config --global user.name \"amar")
+		    
+		    
                     echo "Installing PyPi Packages and configuring Posgtre DB..."
                     echo "Current Path:"
                     pwd
