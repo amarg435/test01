@@ -1,0 +1,109 @@
+{
+  "flows": [
+    {
+      "id": 5059,
+      "parent_data_set_id": null,
+      "data_source": {
+        "id": 5023
+      },
+      "data_sinks":[],
+      "sharers":{
+        "sharers":[],
+        "external_sharers":[]
+      },
+      "children": [
+        {
+          "id": 5061,
+          "parent_data_set_id": 5059,
+          "data_sinks":[],
+          "sharers":{
+            "sharers":[],
+            "external_sharers":[]
+          },
+          "children": [
+            {
+              "id": 5062,
+              "parent_data_set_id": 5061,
+              "data_sinks": [
+                5029,
+                5030
+              ],
+              "sharers": {
+                "sharers": [],
+                "external_sharers": []
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "data_sources": [
+    {
+      "id": 5023,
+      "owner_id": 2,
+      "org_id": 1,
+      "name": "Reference Data Source 1",
+      "status": "ACTIVE",
+      "description": "Simple reference data source. Uses default settings and does not require ingestion.",
+      "source_type": "s3",
+      "tags": [],
+      "created_at": "2018-05-16T17:56:17.000Z",
+      "updated_at": "2018-05-16T17:56:17.000Z",
+      "data_credentials": [
+        5028
+      ]
+    }
+  ],
+  "data_sets": [
+    {
+      "id": 5059,
+      "owner_id": 2,
+      "org_id": 1,
+      "parent_data_set_id": null,
+      "data_source_id": 5023,
+      "name": "Reference Data Set 1",
+      "description": "Pre-canned data set for reference data source.",
+      "status": "ACTIVE",
+      "data_sinks": [],
+      "tags": [],
+      "created_at": "2018-05-16T17:56:17.000Z",
+      "updated_at": "2018-05-16T17:56:17.000Z"
+    },
+   ...
+  ],
+  "data_sinks": [
+    {
+      "id": 5029,
+      "owner_id": 2,
+      "org_id": 1,
+      "name": "Reference Data Sink 1",
+      "status": "ACTIVE",
+      "description": null,
+      "sink_type": "s3",
+      "tags": [],
+      "created_at": "2018-05-16T17:56:17.000Z",
+      "updated_at": "2018-05-16T17:56:17.000Z",
+      "data_credentials": [
+        5028
+      ]
+    },
+    ...
+
+  ],
+  "data_credentials": [
+    {
+      "id": 5028,
+      "owner_id": 2,
+      "org_id": 1,
+      "name": "Reference Flow Credentials 1",
+      "description": null,
+      "credentials_type": "s3",
+      "verified_status": "200 Ok",
+      "tags": [],
+      "created_at": "2018-05-16T17:56:17.000Z",
+      "updated_at": "2018-05-16T17:56:17.000Z"
+    }
+  ]
+}
