@@ -24,9 +24,7 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent {
-              label "linux"
-            }
+           
             steps {
                 sh 'echo Deploying: Moving to Deploy target folder location'
             }
