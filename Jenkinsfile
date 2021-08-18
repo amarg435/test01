@@ -13,7 +13,7 @@ pipeline {
         }
         
         stage("Run Tests") {
-
+            steps {
                     sh '''
                     echo "Checking for Json file with attrinute 'Status' active and replacing with paused value"
                     echo "Current Path:"
@@ -37,7 +37,7 @@ pipeline {
                         echo "inside ifffffffffffffffffffffffffffffffff"
                     fi
                 '''
-            
+            }
         }
         
         stage('Deploy') 
