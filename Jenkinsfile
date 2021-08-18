@@ -8,7 +8,7 @@ pipeline {
               label "linux"
             }
             steps {
-                callGithub.checkoutRepo()
+               
                 sh 'echo Github CHECKOUT successfully'
                 
             }
