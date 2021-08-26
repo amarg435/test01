@@ -2,8 +2,8 @@
 pipeline {
     agent any
     stages {
-	    stage('CHECKOUT'){ 
-            steps {
+	stage('CHECKOUT'){ 
+             steps {
                 sh 'echo Github CHECKOUT successfully'
 		  }
 	}
@@ -21,7 +21,7 @@ pipeline {
 		  	def input = input message: 'Write some thing', parameters: [string(defaultValue: '', description: '', name: 'SOMETHING', trim: false)]
 		  	echo input
 		  	sh "echo ${input}"
-		}
+			}
                 sh 'echo Deploying: Moving to Deploy target folder locatin'  
             }
         }
