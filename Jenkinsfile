@@ -22,8 +22,7 @@ pipeline {
         
 	stage('Deploy'){
             steps {
-                sh 'echo Deploying: Moving to Deploy target folder locatin'          
-            
+                sh 'echo Deploying: Moving to Deploy target folder locatin'  
             }
         }
     }   
