@@ -4,8 +4,7 @@ pipeline {
     agent any
 
     stages {
-        stage('CHECKOUT') {
-            
+        stage('CHECKOUT') 
             steps {
                 sh 'echo Github CHECKOUT successfully'
 		  }
