@@ -16,12 +16,12 @@ pipeline {
             }
         }
 	stage('Deploy'){
-            steps {
-
-		  def input = input message: 'Write some thing', parameters: [string(defaultValue: '', description: '', name: 'SOMETHING', trim: false)]
-		  echo input
-		  sh "echo ${input}"
-}
+		steps{
+			{
+		  	def input = input message: 'Write some thing', parameters: [string(defaultValue: '', description: '', name: 'SOMETHING', trim: false)]
+		  	echo input
+		  	sh "echo ${input}"
+		}
                 sh 'echo Deploying: Moving to Deploy target folder locatin'  
             }
         }
