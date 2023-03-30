@@ -1,6 +1,6 @@
 pipeline {
   agent {
-	  withCredentials([usernameColonPassword(credentialsId: 'dovyear2020', variable: 'docker_hub')]) {
+	  withCredentials([docker]) {
      		docker { image 'node:gallium-alpine3.17' }
 	  }      
     }
