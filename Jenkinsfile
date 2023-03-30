@@ -25,7 +25,7 @@ pipeline {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dovyear2020', passwordVariable: 'docker-pwd', usernameVariable: 'docker-user')]) {
                       sh 'echo "hello-2"'
-                      sh 'sudo docker image push -a dovyear2020/encora:${BUILD_ID}'
+                      sh 'sudo docker image push --all-tags dovyear2020/encora:${BUILD_ID}'
                   }
               }
         }
