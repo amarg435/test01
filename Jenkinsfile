@@ -41,7 +41,7 @@ pipeline {
               script {
                 sh 'sudo aws eks update-kubeconfig --name encora-eks-gtqcsDYH --region us-east-2'
                 sh 'sudo kubectl apply -f kubernetes/deployment.yaml'
-                sh 'sudo kubectl get pods --all-namespaces|grep "encora"'
+                sh 'sudo kubectl get pods --all-namespaces'
               }
           }
         }
