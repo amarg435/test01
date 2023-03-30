@@ -1,6 +1,8 @@
 pipeline {
   agent {
-        docker { image 'node:gallium-alpine3.17' }
+	  withCredentials([usernameColonPassword(credentialsId: 'dovyear2020', variable: 'docker_hub')]) {
+     		docker { image 'node:gallium-alpine3.17' }
+	  }      
     }
   
   tools {
@@ -15,7 +17,7 @@ pipeline {
     stage ('Docker Image Create') {
       steps {
 	  sh 'echo "hello-2"'
-	  sh 'docker build . -t ${BUILD_ID}'
+	  sh 'docker build . -t dovyear2020/encora${BUILD_ID}'
 	  sh 'ls -lart '
       }
     }
