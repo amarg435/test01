@@ -5,6 +5,8 @@ pipeline {
   }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    DOCKER_REPO_NAME = "myapp"
+    EKS_CLUSTER = "encora-eks-gtqcsDYH"
   }
   stages {
         stage ('Build') {
@@ -18,7 +20,8 @@ pipeline {
             sh 'echo "hello-2"'
             sh 'whoami'
             sh 'sudo docker rmi -f $(sudo docker images -q)' 
-            sh 'sudo docker build -t dovyear2020/encora:${BUILD_ID} .'
+            sh 'sudo docker build -t ${DOCKER_REPO_NAME}:${BUILD_ID} .'
+            sh "sudo docker tag ${DOCKER_REPO_NAME}:latest ${DOCKER_REPO_NAME}:${BUILD_ID}"
             sh 'sudo docker images '
         }
         }
@@ -30,7 +33,7 @@ pipeline {
         stage ('Docker Image Push') {
                 steps {
                       sh 'echo "hello-2"'
-                      sh 'sudo docker image push dovyear2020/encora:${BUILD_ID}'
+                      sh 'sudo docker image push ${DOCKER_REPO_NAME}:${BUILD_ID}'
                   }
       
         }
@@ -39,8 +42,8 @@ pipeline {
           steps {			
             withCredentials([file(credentialsId: 'eks_kubeconfig', variable: 'eks_file')]) {
               script {
-                sh 'sudo aws eks update-kubeconfig --name encora-eks-gtqcsDYH --region us-east-2'
-                sh 'sudo docker pull dovyear2020/encora:${BUILD_ID}'
+                sh 'sudo aws eks update-kubeconfig --name ${EKS_CLUSTER} --region us-east-2'
+                sh 'sudo docker pull ${DOCKER_REPO_NAME}:latest'
                 sh 'sudo kubectl apply -f kubernetes/deployment.yaml'
               }
           }
