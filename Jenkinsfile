@@ -22,8 +22,7 @@ pipeline {
         
         stage ('Docker Image Push') {
                 steps {
-                  withCredentials([usernameColonPassword(credentialsId: 'dovyear2020', variable: 'docker-hub')]) {
-                    
+                  withDockerRegistry([ credentialsId: "dovyear2020", url: "https://hub.docker.com/repository/docker/dovyear2020/encora/general" ]) {      
                       sh 'echo "hello-2"'
                       sh 'sudo docker image push dovyear2020/encora:${BUILD_ID}'
                   }
