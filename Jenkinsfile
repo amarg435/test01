@@ -25,4 +25,5 @@ pipeline {
                 sh 'echo Deploying: Moving to Deploy target folder locatin'  
             }
         }
-    }   
+    } 
+}
