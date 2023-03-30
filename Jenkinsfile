@@ -33,7 +33,5 @@ pipeline {
 			  sh 'aws eks --region us-east-2 update-kubeconfig --name encora-eks-gtqcsDYH'
 		      }
 		}
-	     }
     }
-  }
 }
