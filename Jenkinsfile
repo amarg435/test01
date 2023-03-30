@@ -40,8 +40,8 @@ pipeline {
             withCredentials([file(credentialsId: 'eks_kubeconfig', variable: 'eks_file')]) {
               script {
                 sh 'sudo aws eks update-kubeconfig --name encora-eks-gtqcsDYH --region us-east-2'
+                sh 'sudo docker pull dovyear2020/encora:${BUILD_ID}'
                 sh 'sudo kubectl apply -f kubernetes/deployment.yaml'
-                sh 'sudo kubectl get pods --all-namespaces'
               }
           }
         }
