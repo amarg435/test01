@@ -1,5 +1,7 @@
 pipeline {
-  agent any
+  agent {
+        docker { image 'node:gallium-alpine3.17' }
+    }
   
   tools {
     maven 'maven-3.9.1' 
