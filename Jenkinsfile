@@ -1,8 +1,7 @@
 pipeline {
-	agent any
-  
+  agent any
   tools {
-    docker 'docker-latest'
+    maven 'maven-3.6.3' 
   }
   stages {
     stage ('Build') {
@@ -19,9 +18,11 @@ pipeline {
     }
 	  
      stage ('Docker Image Push') {
-      steps {
-	  sh 'echo "hello-2"'
-      }
+      	withCredentials([usernamePassword(credentialsId: 'dovyear2020', usernameVariable: 'dovyear2020', passwordVariable: 'PASSWORD')]) {
+	     steps {
+		  sh 'echo "hello-2"'
+	      }
+	}
     }
      stage ('Deploy') {
       steps {
