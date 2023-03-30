@@ -15,7 +15,7 @@ pipeline {
             sh 'echo "hello-2"'
             sh 'whoami'
            
-            sh 'sudo docker build -t ${BUILD_ID} dovyear2020/encora .'
+            sh 'sudo docker build -t dovyear2020/encora-${BUILD_ID} .'
             sh 'sudo docker images '
         }
         }
@@ -25,7 +25,7 @@ pipeline {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dovyear2020', passwordVariable: 'docker-pwd', usernameVariable: 'docker-user')]) {
                       sh 'echo "hello-2"'
-                      sh 'sudo docker push dovyear2020/encora:${BUILD_ID}'
+                      sh 'sudo docker push dovyear2020/encora-${BUILD_ID}:latest'
                   }
               }
         }
