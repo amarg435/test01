@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
        —name: nginx
-          image: nginx
+          image: dovyear2020/encora:${BUILD_ID}
           resources:
             limits:
               memory: 200Mi
