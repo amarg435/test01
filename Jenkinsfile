@@ -5,7 +5,7 @@ pipeline {
   }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    DOCKER_REPO_NAME = "myapp"
+    DOCKER_REPO_NAME = "dovyear2020/encora"
     EKS_CLUSTER = "encora-eks-gtqcsDYH"
   }
   stages {
