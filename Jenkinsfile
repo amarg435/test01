@@ -1,8 +1,6 @@
 pipeline {
   agent {
-	  withCredentials([docker]) {
-     		docker { image 'node:gallium-alpine3.17' }
-	  }      
+	docker     
     }
   
   tools {
