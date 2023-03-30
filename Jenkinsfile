@@ -15,14 +15,14 @@ pipeline {
             sh 'echo "hello-2"'
             sh 'whoami'
             sh 'sudo docker build . -t dovyear2020/encora-${BUILD_ID}'
-            sh 'docker images '
+            sh 'sudo docker images '
         }
         }
         
         stage ('Docker Image Push') {
 
                 steps {
-                    withCredentials([usernamePassword(credentialsId: 'dovyear2020', usernameVariable: 'dovyear2020', passwordVariable: 'PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dovyear2020', passwordVariable: 'docker-pwd', usernameVariable: 'docker-user')]) {
                       sh 'echo "hello-2"'
                       sh 'docker push dovyear2020/encora${BUILD_ID}'
                   }
