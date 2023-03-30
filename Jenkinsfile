@@ -1,26 +1,20 @@
-// Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
-    stages {
-	stage('CHECKOUT'){ 
-             steps {
-                sh 'echo Github CHECKOUT successfully'
-		  }
-	}
-        stage("Run Tests") {
+    environment {
+    PATH = "/opt/apache-maven-3.8.7/bin/:$PATH"
+    DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+    //Get the Latest tag
+    DOCKER_TAG = getDockerTag()
+    
+     }
+    
+    stages{
+        stage('Cleanup Workspace') {
             steps {
-                    sh '''
-                    echo "Demo testing successfull..."  
-                    echo "Checking for Json file with attrinute 'Status' active and replacing with paused value"
-		    '''
+                cleanWs()
+                sh """
+                echo "Cleaned Up Workspace For Project"
+                """
             }
-        }
-	stage('Deploy'){
-		steps{
-		  	def input = input message: 'Write some thing', parameters: [string(defaultValue: '', description: '', name: 'SOMETHING', trim: false)]
-		  	echo input
-		  	sh "echo ${input}"
-			}
-        }
-    } 
+	}
 }
