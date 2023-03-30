@@ -17,6 +17,8 @@ spec:
     spec:
       containers:
       - name: javaweb
-        image: dovyear2020/encora:${BUILD_ID}
+        image:
+        repository: dovyear2020/encora
+        tag: "${BUILD_ID}"
         ports:
         - containerPort: 80
