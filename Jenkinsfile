@@ -13,6 +13,7 @@ pipeline {
         stage ('Docker Image Create') {
         steps {
             sh 'echo "hello-2"'
+            sh 'whoami'
             sh 'sudo docker build . -t dovyear2020/encora${BUILD_ID}'
             sh 'ls -lart '
         }
