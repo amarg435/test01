@@ -3,9 +3,6 @@ pipeline {
   tools {
     maven 'maven-3.9.1' 
   }
-  environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-  }
   stages {
         stage ('Build') {
         steps {
