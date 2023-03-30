@@ -1,20 +1,18 @@
 pipeline {
-    agent any
-    environment {
-    PATH = "/opt/apache-maven-3.8.7/bin/:$PATH"
-    DOCKERHUB_CREDENTIALS = credentials('DockerHub')
-    //Get the Latest tag
-    DOCKER_TAG = getDockerTag()
-    
-     }
-    
-    stages{
-        stage('Cleanup Workspace') {
-            steps {
-                cleanWs()
-                sh """
-                echo "Cleaned Up Workspace For Project"
-                """
-            }
-	}
+  agent any
+  tools {
+    maven 'maven-3.6.3' 
+  }
+  stages {
+    stage ('Build') {
+      steps {
+	sh 'echo "hello-2"'
+      }
+    }
+    stage ('Deploy') {
+      steps {
+	  sh 'echo "hello-2"'
+      }
+    }
+  }
 }
