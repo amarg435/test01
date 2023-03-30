@@ -18,20 +18,9 @@ pipeline {
       }
     }
 	  
-    stage ('Docker Image Push') {
-    
+    stage ('Docker Image Push') {   
             steps {
             sh 'echo "hello-2"'
             }
-    }
-    
-    stage ('Deploy') {
-	    
-    	    steps {
-			    sh 'curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"'
-		            sh 'unzip awscliv2.zip'
-			    sh 'sudo ./aws/install'
-			    sh 'aws eks --region us-east-2 update-kubeconfig --name encora-eks-gtqcsDYH'
-		}
     }
 }
