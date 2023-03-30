@@ -1,7 +1,10 @@
 pipeline {
-  agent {
-	docker     
-    }
+	agent {
+	    docker {
+		label 'docker'
+		image 'node:gallium-bullseye-slim'
+	    }
+	}
   
   tools {
     maven 'maven-3.9.1' 
