@@ -1,9 +1,6 @@
 pipeline {
   agent any
   
-  //Get the Latest tag
-  DOCKER_TAG = getDockerTag()
-  
   tools {
     maven 'maven-3.9.1' 
   }
@@ -16,7 +13,8 @@ pipeline {
     stage ('Docker Image Create') {
       steps {
 	  sh 'echo "hello-2"'
-	  sh 'docker build . -t dovyear2020/amar:${DOCKER_TAG}'
+	  sh 'docker build . -t ${BUILD_ID}'
+	  sh 'ls -lart '
       }
     }
 	  
