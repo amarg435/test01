@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-	sh 'echo "hello-2"'
+	sh 'echo "hello-2000"'
       }
     }
     stage ('Deploy') {
