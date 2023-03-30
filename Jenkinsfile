@@ -14,7 +14,7 @@ pipeline {
         steps {
             sh 'echo "hello-2"'
             sh 'whoami'
-            sh 'sudo docker rmi -f $(sudo docker images -q)' 
+           
             sh 'sudo docker build -t ${BUILD_ID} dovyear2020/encora .'
             sh 'sudo docker images '
         }
