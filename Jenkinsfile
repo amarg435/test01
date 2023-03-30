@@ -3,6 +3,9 @@ pipeline {
   tools {
     maven 'maven-3.9.1' 
   }
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  }
   stages {
         stage ('Build') {
         steps {
@@ -19,13 +22,16 @@ pipeline {
             sh 'sudo docker images '
         }
         }
-
+            stage('Login') {
+              steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+              }
+            }
         stage ('Docker Image Push') {
                 steps {
                   withCredentials([usernamePassword(credentialsId: 'dovyear2020', passwordVariable: 'docker-pwd', usernameVariable: 'docker-user')]) {
 
                       sh 'echo "hello-2"'
-                      sh 'echo $docker-pwd | docker login -u $dovyear2020 --password-stdin'
                       sh 'sudo docker image push dovyear2020/encora:${BUILD_ID}'
                   }
               }
