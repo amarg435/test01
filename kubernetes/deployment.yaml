@@ -4,30 +4,31 @@ metadata:
   name: nginx-ingress
   namespace: encora
 spec:
-  # A deployment's specification really only 
-  # has a few useful options
-  
-  # 1. How many copies of each pod do we want?
   replicas: 5
-
-  # 2. How do want to update the pods?
-  strategy: Recreate
-
-  # 3. Which pods are managed by this deployment?
+  strategy:
+    type: RollingUpdate
   selector:
-    # This must match the labels we set on the pod!
     matchLabels:
-      deploy: example
-  
-  # This template field is a regular pod configuration 
-  # nested inside the deployment spec
+      app: nginx-ingress
   template:
     metadata:
-      # Set labels on the pod.
-      # This is used in the deployment selector.
       labels:
-        deploy: example
+        app: nginx-ingress
     spec:
+      serviceAccountName: nginx-ingress
       containers:
-        - name: nginx
-          image: dovyear2020/encora:${BUILD_ID}
+      - image: dovyear2020/encora:$BUILD_ID
+        imagePullPolicy: IfNotPresent
+        name: nginx-ingress
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /nginx-ready
+            port: readiness-port
+          periodSeconds: 1
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
