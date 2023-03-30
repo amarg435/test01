@@ -29,12 +29,10 @@ pipeline {
             }
         stage ('Docker Image Push') {
                 steps {
-                  withCredentials([usernamePassword(credentialsId: 'dovyear2020', passwordVariable: 'docker-pwd', usernameVariable: 'docker-user')]) {
-
                       sh 'echo "hello-2"'
                       sh 'sudo docker image push dovyear2020/encora:${BUILD_ID}'
                   }
-              }
+      
         }
         
         stage ('Deploy') {
