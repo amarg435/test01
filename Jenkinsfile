@@ -34,6 +34,7 @@ pipeline {
                 steps {
                       sh 'echo "hello-2"'
                       sh 'sudo docker image push ${DOCKER_REPO_NAME}:${BUILD_ID}'
+                      sh 'sudo docker image push ${DOCKER_REPO_NAME}:latest'
                   }
       
         }
@@ -43,7 +44,6 @@ pipeline {
             withCredentials([file(credentialsId: 'eks_kubeconfig', variable: 'eks_file')]) {
               script {
                 sh 'sudo aws eks update-kubeconfig --name ${EKS_CLUSTER} --region us-east-2'
-                sh 'sudo docker pull ${DOCKER_REPO_NAME}:latest'
                 sh 'sudo kubectl apply -f kubernetes/deployment.yaml'
               }
           }
