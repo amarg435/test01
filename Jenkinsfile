@@ -14,8 +14,8 @@ pipeline {
         steps {
             sh 'echo "hello-2"'
             sh 'whoami'
-            sh 'sudo docker build . -t dovyear2020/encora${BUILD_ID}'
-            sh 'ls -lart '
+            sh 'sudo docker build . -t dovyear2020/encora-${BUILD_ID}'
+            sh 'docker images '
         }
         }
         
