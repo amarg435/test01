@@ -35,14 +35,16 @@ pipeline {
       
         }
         
-        stage ('Deploy') {
-  
-                steps {
-                    sh 'curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"'
-                    sh 'unzip awscliv2.zip'
-                    sh 'sudo ./aws/install'
-                    sh 'aws eks --region us-east-2 update-kubeconfig --name encora-eks-gtqcsDYH'
-                }
+        stage('Integrate Jenkins with EKS Cluster and Deploy') {
+          steps {			
+            withCredentials([file(credentialsId: 'eks_kubeconfig', variable: 'eks_file')]) {
+              script {
+                sh 'aws eks update-kubeconfig --name encora-eks-gtqcsDYH --region us-east-2'
+                sh 'kubectl get svc'
+                sh 'kubectl apply -f deployment.yaml'
+                sh 'kubectl apply -f service.yaml'
+              }
+          }
         }
     }
 }
