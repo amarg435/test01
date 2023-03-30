@@ -14,6 +14,7 @@ pipeline {
         steps {
             sh 'echo "hello-2"'
             sh 'whoami'
+            sh 'sudo docker rmi $(docker images -q)' 
             sh 'sudo docker build . -t dovyear2020/encora-${BUILD_ID}'
             sh 'sudo docker images '
         }
@@ -24,7 +25,7 @@ pipeline {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dovyear2020', passwordVariable: 'docker-pwd', usernameVariable: 'docker-user')]) {
                       sh 'echo "hello-2"'
-                      sh 'docker push dovyear2020/encora${BUILD_ID}'
+                      sh 'docker push dovyear2020/encora-${BUILD_ID}'
                   }
               }
         }
