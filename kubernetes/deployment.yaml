@@ -1,34 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: javaweb-deployment
+  name: w-app
   namespace: encora
-  labels:
-    app: javaweb
 spec:
-  replicas: 4
   selector:
     matchLabels:
-      app: javaweb
+      app: w-app
+  replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app: javaweb
+        app: w-app
     spec:
       containers:
-      - name: javaweb
+      - name: w-app
         image: dovyear2020/encora:latest
         ports:
         - containerPort: 80
-        resources:
-            limits:
-              memory: 200Mi
-            requests:
-              cpu: 100m
-              memory: 200Mi
-        livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 5
