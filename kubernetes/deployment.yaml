@@ -20,3 +20,7 @@ spec:
         image: dovyear2020/encora:latest
         ports:
         - containerPort: 80
+        -   command:
+           - “tail”
+           - “-f”
+           - “/dev/null”
