@@ -17,8 +17,6 @@ spec:
     spec:
       containers:
       - name: javaweb
-        image:
-        repository: dovyear2020/encora
-        tag: latest
+        image: dovyear2020/encora:latest
         ports:
         - containerPort: 80
