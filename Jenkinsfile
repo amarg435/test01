@@ -14,18 +14,12 @@ pipeline {
             sh 'echo "hello-2000"'
             sh 'docker --version'      
         }
-        stage ('Build_Package') {
-        steps {
-            sh 'echo "hello-2000"'
-            sh 'mvn package'  
-            sh 'ls -lart'   
-        }
         }
         stage ('Docker Image Create') {
         steps {
             sh 'echo "hello-2"'
             sh 'whoami'
-            sh 'sudo docker rmi -f $(sudo docker images -q)' 
+
             sh 'sudo docker build -t ${DOCKER_REPO_NAME}:${BUILD_ID} .'
             sh 'sudo docker tag ${DOCKER_REPO_NAME}:${BUILD_ID} ${DOCKER_REPO_NAME}:latest'
             sh 'sudo docker images '
@@ -38,7 +32,7 @@ pipeline {
             }
         stage ('Docker Image Push') {
                 steps {
-                      sh 'echo "hello-2"'
+                      sh 'echo "hello-22222"'
                       sh 'sudo docker image push ${DOCKER_REPO_NAME}:${BUILD_ID}'
                       sh 'sudo docker image push ${DOCKER_REPO_NAME}:latest'
                   }
