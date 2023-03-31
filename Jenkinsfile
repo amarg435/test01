@@ -19,7 +19,7 @@ pipeline {
           steps {
             sh 'echo "hello-2000"'
             sh 'mvn package'  
-            sh 'ls -lart'   
+            sh 'ls -lart target/'   
           }
             }
         stage ('Docker Image Create') {
