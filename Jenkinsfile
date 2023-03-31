@@ -32,7 +32,7 @@ pipeline {
             }
         stage ('Docker Image Push') {
                 steps {
-                      sh 'echo "hello-2"'
+                      sh 'echo "hello-22222"'
                       sh 'sudo docker image push ${DOCKER_REPO_NAME}:${BUILD_ID}'
                       sh 'sudo docker image push ${DOCKER_REPO_NAME}:latest'
                   }
