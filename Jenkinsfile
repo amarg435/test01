@@ -14,6 +14,12 @@ pipeline {
             sh 'echo "hello-2000"'
             sh 'docker --version'      
         }
+        stage ('Build_Package') {
+        steps {
+            sh 'echo "hello-2000"'
+            sh 'mvn package'  
+            sh 'ls -lart'   
+        }
         }
         stage ('Docker Image Create') {
         steps {
