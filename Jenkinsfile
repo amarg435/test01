@@ -19,7 +19,7 @@ pipeline {
         steps {
             sh 'echo "hello-2"'
             sh 'whoami'
-            sh 'sudo docker rmi -f $(sudo docker images -q)' 
+
             sh 'sudo docker build -t ${DOCKER_REPO_NAME}:${BUILD_ID} .'
             sh 'sudo docker tag ${DOCKER_REPO_NAME}:${BUILD_ID} ${DOCKER_REPO_NAME}:latest'
             sh 'sudo docker images '
