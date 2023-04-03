@@ -56,6 +56,7 @@ pipeline {
               script {
                 sh 'sudo aws eks update-kubeconfig --name ${EKS_CLUSTER} --region us-east-2'
                 sh 'sudo sed "s/${BUILD_ID}/${BUILD_ID}/g" kubernetes/deployment.yaml'
+                sh 'sudo cat kubernetes/deployment.yaml'
                 sh 'sudo kubectl apply -f kubernetes/deployment.yaml'
               }
           }
