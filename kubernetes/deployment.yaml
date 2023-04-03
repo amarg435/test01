@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-k8s
-          image: dovyear2020/encora:latest # Image that will be used to containers in the cluster
+          image: dovyear2020/encora:${BUILD_ID} # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
