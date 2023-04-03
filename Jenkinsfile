@@ -6,11 +6,15 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     DOCKER_REPO_NAME = "dovyear2020/encora"
-    EKS_CLUSTER = "encora-eks-gtqcsDYH"
+    EKS_CLUSTER = "encora-eks-cpl19SIH"
   }
   stages {
         stage ('Build') {
           steps {
+              // Clean before build
+              cleanWs()
+              // We need to explicitly checkout from SCM here
+              checkout scm
               sh 'echo "hello-2000"'
               sh 'docker --version'      
           }
@@ -51,6 +55,8 @@ pipeline {
             withCredentials([file(credentialsId: 'eks_kubeconfig', variable: 'eks_file')]) {
               script {
                 sh 'sudo aws eks update-kubeconfig --name ${EKS_CLUSTER} --region us-east-2'
+                sh 'sudo sed -i -e "s/latest/${BUILD_ID}/g" kubernetes/deployment.yaml'
+                sh 'sudo cat kubernetes/deployment.yaml'
                 sh 'sudo kubectl apply -f kubernetes/deployment.yaml'
               }
           }

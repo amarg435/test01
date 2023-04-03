@@ -1,9 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-RUN mkdir /app/
-USER spring:spring
-WORKDIR /app
-VOLUME /tmp
-COPY target/demo-application-0.0.1-SNAPSHOT.jar /app/app.jar
+FROM openjdk:8
 EXPOSE 8080
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]
+ADD target/springboot-k8s-demo.jar /app/springboot-k8s-demo.jar
+ENTRYPOINT ["java","-jar","/app/springboot-k8s-demo.jar"]
