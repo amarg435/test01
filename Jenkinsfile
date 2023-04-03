@@ -11,6 +11,10 @@ pipeline {
   stages {
         stage ('Build') {
           steps {
+              // Clean before build
+              cleanWs()
+              // We need to explicitly checkout from SCM here
+              checkout scm
               sh 'echo "hello-2000"'
               sh 'docker --version'      
           }
