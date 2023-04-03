@@ -1,32 +1,31 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment # Kubernetes resource kind we are creating
 metadata:
-  name: javaweb-deployment
+  name: spring-boot-k8s
   namespace: encora
-  labels:
-    app: javaweb
 spec:
-  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-k8s
+  replicas: 2 # Number of replicas that will be created for this deployment
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
-  selector:
-    matchLabels:
-      app: javaweb
   template:
     metadata:
       labels:
-        app: javaweb
+        app: spring-boot-k8s
     spec:
       containers:
-      - name: javaweb
-        image: dovyear2020/encora:latest
-        ports:
-        - containerPort: 80
-
+        - name: spring-boot-k8s
+          image: springboot-k8s-example:1.0 # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # The port that the container is running on in the cluster
 ---
+
 apiVersion: v1 # Kubernetes API version
 kind: Service # Kubernetes resource kind we are creating
 metadata: # Metadata of the resource kind we are creating
@@ -38,5 +37,5 @@ spec:
   ports:
     - protocol: "TCP"
       port: 8080 # The port that the service is running on in the cluster
-      targetPort: 80 # The port exposed by the service
+      targetPort: 8080 # The port exposed by the service
   type: NodePort # type of the service.
