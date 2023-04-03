@@ -55,7 +55,7 @@ pipeline {
             withCredentials([file(credentialsId: 'eks_kubeconfig', variable: 'eks_file')]) {
               script {
                 sh 'sudo aws eks update-kubeconfig --name ${EKS_CLUSTER} --region us-east-2'
-                sh 'sudo sed "s/latest/${BUILD_ID}/g" kubernetes/deployment.yaml'
+                sh 'sudo sed -i -e "s/latest/${BUILD_ID}/g" kubernetes/deployment.yaml'
                 sh 'sudo cat kubernetes/deployment.yaml'
                 sh 'sudo kubectl apply -f kubernetes/deployment.yaml'
               }
