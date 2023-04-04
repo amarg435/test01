@@ -11,7 +11,7 @@ public class SpringbootK8sDemoApplication {
 
 	@GetMapping("/message")
 	public String displayMessage(){
-		return "Congratulation you successfully deployed your application to kubernetes_ Version:7 04April2023  !!";
+		return "Congratulation you successfully deployed your application to kubernetes_ Version:88888888888888888888888888888  !!";
 	}
 
 	public static void main(String[] args) {
